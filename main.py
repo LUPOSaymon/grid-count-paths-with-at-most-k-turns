@@ -32,11 +32,12 @@ k=11
 printPaths(n,k)
 
 
-def printChart(n,k):
+def printChart():
+    k = 4
     times = list()
     elements = list()
-    for i in range(1,1400):
-        n = 20*i
+    for i in range(k,10000):
+        n = i
         start = time.process_time()
         factorials = createFactorialArray(n - 2)
         countPaths(n, k, factorials)
@@ -44,12 +45,12 @@ def printChart(n,k):
         elements.append(n)
         times.append(end-start)
 
-    plt.xlabel('List Length')
-    plt.ylabel('Time Complexity')
+    plt.xlabel('n')
+    plt.ylabel('Time')
     plt.plot(elements, times, label='Actual Time')
     plt.grid()
     plt.legend()
     plt.show()
     pass
 
-printChart(20,3)
+printChart()
