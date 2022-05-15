@@ -1,16 +1,29 @@
 # Create an array where the array[index] contains the factorial of index-1
-def createFactorialArray(z):#O(n)
-    factorials = [1] * (z) #(z+1 cause we include
-    for i in range(1, z):
-        factorials[i] = factorials[i - 1] * (i+1)
+import math
+
+
+def createFactorialArray(z):  # O(n)
+    factorials = [1] * (z+1)
+    for i in range(1, z+1):
+        factorials[i] = factorials[i - 1] * i
     return factorials
 
-def countPaths(n,k):
-    return None
+
+def countPaths(n: int, k: int, factorials: []): #O(k)
+    finalCount = 0
+    for i in range(1, k+1):
+        finalCount += 2 *   \
+                        ((factorials[n - 2]) / (factorials[math.floor(i / 2)] * factorials[(n-2) - math.floor(i / 2)])) * \
+                        ((factorials[n - 2]) / (factorials[math.floor((i - 1) / 2)] * factorials[(n-2) - math.floor((i - 1) / 2)]))
+    return finalCount
+
+
 # With a grid n*n, count all possible paths with at least k turns
 def printPaths(n, k):
     factorials = createFactorialArray(n - 2)
-    count = countPaths(n,k)
-    print(factorials)
+    count = countPaths(n, k, factorials)
+    print(count)
 
-
+n= 35
+k=2
+printPaths(n,k)
